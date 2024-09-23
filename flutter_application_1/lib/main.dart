@@ -63,48 +63,41 @@ class MenuScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            MaterialButton(
-              color: Colors.blue,
-              textColor: Colors.white,
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MateriScreen(title: 'Apa Itu Komputer?')));
-              },
-              child: Text('Apa Itu Komputer?'),
-            ),
-            MaterialButton(
-              color: Colors.blue,
-              textColor: Colors.white,
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MateriScreen(title: 'Cara Menggunakan Komputer')));
-              },
-              child: Text('Cara Menggunakan Komputer'),
-            ),
-            MaterialButton(
-              color: Colors.blue,
-              textColor: Colors.white,
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MateriScreen(title: 'Hardware')));
-              },
-              child: Text('Hardware'),
-            ),
-            MaterialButton(
-              color: Colors.blue,
-              textColor: Colors.white,
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MateriScreen(title: 'Software')));
-              },
-              child: Text('Software'),
-            ),
-            MaterialButton(
-              color: Colors.blue,
-              textColor: Colors.white,
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MateriScreen(title: 'Virus')));
-              },
-              child: Text('Virus'),
-            ),
+            buildMenuButton(context, 'Apa Itu Komputer?', MateriScreen(title: 'Apa Itu Komputer?')),
+            SizedBox(height: 16), // Adding space between buttons
+            buildMenuButton(context, 'Cara Menggunakan Komputer', MateriScreen(title: 'Cara Menggunakan Komputer')),
+            SizedBox(height: 16),
+            buildMenuButton(context, 'Hardware', MateriScreen(title: 'Hardware')),
+            SizedBox(height: 16),
+            buildMenuButton(context, 'Software', MateriScreen(title: 'Software')),
+            SizedBox(height: 16),
+            buildMenuButton(context, 'Virus', MateriScreen(title: 'Virus')),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildMenuButton(BuildContext context, String title, Widget screen) {
+    return MaterialButton(
+      color: Colors.blue[900], // Matching color to the image
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15), // Rounded corners
+      ),
+      padding: EdgeInsets.symmetric(vertical: 20), // More padding for larger buttons
+      minWidth: double.infinity, // Full-width buttons
+      onPressed: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
+      },
+      child: Text(
+        title,
+        textAlign: TextAlign.center, // Center text
+        style: TextStyle(
+          fontSize: 20,
+          color: Colors.white,
+          fontWeight: FontWeight.bold, // Bold font to match the image style
         ),
       ),
     );
